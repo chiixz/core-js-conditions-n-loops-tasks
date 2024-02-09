@@ -21,8 +21,12 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+
+function isPositive(number) {
+  if (number >= 0) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -38,8 +42,15 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+
+function getMaxNumber(a, b, c) {
+  if (a - b > 0 && a - c > 0) {
+    return a;
+  }
+  if (b - a > 0 && b - c > 0) {
+    return b;
+  }
+  return c;
 }
 
 /**
@@ -60,8 +71,20 @@ function getMaxNumber(/* a, b, c */) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  if (queen.x === king.x || queen.y === king.y) {
+    return true;
+  }
+  if (queen.x === queen.y && king.x === king.y) {
+    return true;
+  }
+  if (queen.x + queen.y === king.x + king.y) {
+    return true;
+  }
+  if (queen.y - queen.x === king.y - king.x) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -82,8 +105,17 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (
+    !(a + b < c || a + c < b || c + b < a) &&
+    (a === b || a === c || b === c) &&
+    a > 0 &&
+    b > 0 &&
+    c > 0
+  ) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -122,7 +154,6 @@ function convertToRomanNumerals(/* num */) {
 function convertNumberToString(/* numberStr */) {
   throw new Error('Not implemented');
 }
-
 /**
  * Determines whether a string is a palindrome.
  * In this task, the use of methods of the String and Array classes is not allowed.
@@ -135,8 +166,16 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const str1 = str;
+  let str2 = '';
+  for (let j = str.length - 1; j >= 0; j -= 1) {
+    str2 += str[j];
+    if (str1 === str2) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /**
@@ -153,10 +192,14 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      return i;
+    }
+  }
+  return -1;
 }
-
 /**
  * Checks if a number contains a specific digit.
  * In this task, the use of methods of the String and Array classes is not allowed.
@@ -189,10 +232,27 @@ function isContainNumber(/* num, digit */) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  let left = 0;
+  if (arr.length % 2 === 0) {
+    for (let i = 0; i < arr.length; i++) {
+      left += arr[i];
+      if (left === arr.length - 1) {
+        return false;
+      }
+    }
+  } 
+  let right = 0;
+  if (arr.length % 2 !== 0) {
+    for (let i = 0; i < arr.length; i++) {
+      right += arr[i];
+      if (right === arr.length - 1) {
+        return true;
+      }
+    }
+  }
+  console.log(`right ${right}, left ${left}`);
 }
-
 /**
  * Generates a spiral matrix of a given size, filled with numbers in ascending order starting from one.
  * The direction of filling with numbers is clockwise.
