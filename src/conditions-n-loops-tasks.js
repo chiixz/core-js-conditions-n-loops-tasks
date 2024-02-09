@@ -151,8 +151,54 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  const words = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+    'minus',
+    'point',
+  ];
+  let word = '';
+  const result = [];
+  let resultWord = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    for (let k = 0; k < words.length; k += 1) {
+      switch (Number(numberStr[i])) {
+        case k:
+          word = `${words[k]}`;
+          break;
+        default:
+          break;
+      }
+    }
+    switch (numberStr[i]) {
+      case '-':
+        word = `${words[10]}`;
+        break;
+      case '.':
+        word = `${words[11]}`;
+        break;
+      case ',':
+        word = `${words[11]}`;
+        break;
+      default:
+        break;
+    }
+    result[i] = word;
+  }
+  for (let i = 0; i < result.length - 1; i += 1) {
+    resultWord += `${result[i]} `;
+  }
+  resultWord += result[result.length - 1];
+  return resultWord;
 }
 /**
  * Determines whether a string is a palindrome.
@@ -215,10 +261,18 @@ function getIndexOf(str, letter) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  let newNum = num;
+  let newDig = digit;
+  newNum = String(num);
+  newDig = String(digit);
+  for (let i = 0; i < newNum.length; i += 1) {
+    if (newNum[i] === newDig) {
+      return true;
+    }
+  }
+  return false;
 }
-
 /**
  * Finds the index of an element in an array where the sum of elements to the left equals the sum of elements to the right.
  * If such an index does not return -1.
