@@ -309,8 +309,21 @@ function isContainNumber(num, digit) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i += 1) {
+    sum += arr[i];
+  }
+  let leftSum = 0;
+
+  for (let j = 0; j < arr.length; j += 1) {
+    const rightSum = sum - arr[j] - leftSum;
+    if (rightSum === leftSum) {
+      return j;
+    }
+    leftSum += arr[j];
+  }
+  return -1;
 }
 /**
  * Generates a spiral matrix of a given size, filled with numbers in ascending order starting from one.
