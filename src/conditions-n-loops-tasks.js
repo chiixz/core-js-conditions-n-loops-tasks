@@ -385,6 +385,22 @@ function rotateMatrix(/* matrix */) {
  */
 function sortByAsc(/* arr */) {
   throw new Error('Not implemented');
+  // let swap;
+  // let newArr = [];
+  // for (let i = 0; i < arr.length; i += 1) {
+  //   let a = arr[i];
+  //   let b = arr[i + 1];
+  //   if (a > b) {
+  //     swap = a;
+  //     a = b;
+  //     b = swap;
+  //     newArr = b;
+
+  //     i -= 1;
+  //   }
+  //   newArr = b;
+  //   i += 1;
+  // }
 }
 
 /**
